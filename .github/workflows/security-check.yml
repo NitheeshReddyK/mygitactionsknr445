@@ -24,7 +24,38 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: cpp # Replace with your project's language
+          languages: cpp # Replace 'cpp' with your project's language
+          working-directory: src # Specify if your source code is in a subfolder
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3name: Analyze with CodeQL
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  security-check:
+    name: Security Vulnerability Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: cpp # Replace 'cpp' with your project's language
+          working-directory: src # Specify if your source code is in a subfolder
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
