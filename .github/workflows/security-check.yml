@@ -17,13 +17,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js (if using a Node.js project)
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-
-      - name: Install Dependencies
-        run: npm install
+      - name: Build Project
+        run: |
+          echo "Building project..."
+          # Add your build commands here, for example:
+          # make build
+          echo "Build complete."
 
   security-check:
     name: Security Vulnerability Scan
@@ -37,7 +36,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
-          languages: javascript # Change this to match your project's language
+          languages: cpp # Replace with your project's language (e.g., python, java, csharp)
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
