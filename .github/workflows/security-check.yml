@@ -1,4 +1,4 @@
-name: CI/CD Pipeline with Security Check (CodeQL Included)
+name: CI/CD Pipeline with CodeQL Security Check
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
           echo "Build complete."
 
   security-check:
-    name: Security Vulnerability Scan with CodeQL
+    name: CodeQL Security Check
     runs-on: ubuntu-latest
     needs: build
 
@@ -39,7 +39,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: cpp # Replace with your project's language(s), e.g., python, java, etc.
+          languages: cpp # Update to match your project's language(s)
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
